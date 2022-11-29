@@ -1,0 +1,80 @@
+.list-contacts {
+    width: 60%;
+    height: auto;
+    min-height: 85vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.contact {
+    width: 92%;
+    margin: 1%;
+    margin-right: 6%;
+    height: 64px;
+    font-size: 20px;
+    text-align: left;
+    border: 1px solid lightgrey;
+    padding: 6px;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.contact span {
+    margin-left: 8px;
+}
+
+.contact-social {
+    margin-left: 30%;
+}
+
+.contact:hover {
+    background-color: lightgrey;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+}
+
+/*  Create contact */
+
+.contact-div {
+    width: 60%;
+    height: auto;
+    min-height: 300px;
+    margin: auto;
+    margin-top: 4%;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.text-input {
+    width: 60%;
+    height: auto;
+    margin: 1%;
+    margin-top: 2%;
+    margin-right: 20%;
+    margin-left: 20%;
+    padding: 4px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid grey;
+}
+
+.submit-input {
+    width: 20%;
+    height: 40px;
+    margin: 16px;
+    font-size: 16px;
+    background-color: #333;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}

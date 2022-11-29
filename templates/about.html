@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <script src="https://kit.fontawesome.com/71fde90bd7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+</head>
+<body>
+    <div class="navbar">
+        <a id="active" href="/"> Home </a>
+
+        <div class="dropdown">
+            <button class="dropbtn"> Notas
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/notes"> Suas notas</a>
+                <a href="/notes/add"> Nova nota </a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropbtn"> Contatos
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/contacts"> Seus contatos</a>
+                <a href="/contacts/add"> Novo contato </a>
+            </div>
+        </div>
+
+        <a href="/urls"> Sites </a>
+        <a href="/about"> Sobre </a>
+
+        <div class="dropdown">
+            <button class="dropbtn"> Login
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/check"> Entrar</a>
+                <a href="/settings"> Ajustes</a>
+                <a href="/logout"> Sair </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="div-brand">
+            <a class="brand-name"> PyNotes</a>
+            <i class="fa-brands fa-python fa-2xl"></i>
+        </div>
+
+        <h1 class="title"> Sobre:</h1>
+        <h3> Projeto de api criado por um estudante python para demonstrar o uso do Flask e PostgreSql</h3>
+        <h3> Estrutura da api:</h3>
+        <p style="text-align: center;"><a href="/">/</a> Pagina inicial ['GET']</p>
+        <p style="text-align: center;"><a href="/about">/about</a> Pagina sobre o projeto ['GET']</p>
+        <p style="text-align: center;"><a href="/login">/login</a> Pagina de login e cadastro ['GET', 'POST']</p>
+        <p style="text-align: center;"><a href="/settings">/settings</a> Pagina para configurar a conta do usuario ['GET', 'POST']</p>
+        <p style="text-align: center;"><a href="/notes">/notes</a> Pagina com as notas do usuario ['GET']</p>
+        <p style="text-align: center;"><a href="/notes/add">/notes/add</a> Pagina para adicionar as notas ['GET', 'POST']</p>
+        <p style="text-align: center;"><a href="/contacts">/contacts</a> Pagina com os contatos do usuario ['GET']</p>
+        <p style="text-align: center;"><a href="/contacts/add">/contacts/add</a> Pagina para adicionar novos contatos ['GET', 'POST']</p>
+        <p style="text-align: center;"><a href="/contacts/add">/contacts/add</a> Pagina com os sites favoritos do usuario ['GET', 'POST']</p>
+    </div>
+
+</body>
+</html>

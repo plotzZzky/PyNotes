@@ -1,0 +1,89 @@
+.login-content {
+	width: 22%;
+	height: auto;
+    margin: auto;
+    margin-top: 8%;
+    border-radius: 4px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+    background-color: #333;
+    overflow: hidden;
+}
+
+.login-tab {
+    display: none;
+    width: 98%;
+    height: 30vh;
+    margin: 1%;
+    margin-top: 0px;
+    padding: 36px 0px 0px 0px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.tabs {
+    width: auto;
+    height: 40px;
+    margin: 4px;
+    margin-bottom: 0;
+}
+
+.tablinks {
+    width: 50%;
+    height: 40px;
+    font-size: 24px;
+    margin: 0;
+    border: none;
+    background-color: #333;
+    color: white;
+}
+
+.user-input {
+    width: 80%;
+    height: auto;
+    margin: 2%;
+    margin-right: 8%;
+    margin-left: 8%;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.password-input {
+    width: 80%;
+    height: auto;
+    margin: 2%;
+    margin-right: 8%;
+    margin-left: 8%;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.submit-input {
+    width: 30%;
+    height: 32px;
+    margin: 10%;
+    margin-right: 30%;
+    margin-left: 30%;
+    padding: 8px;
+    font-size: 16px;
+    background-color:  #85A37C;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 12px 0 rgba(0, 0, 0, 0.12);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+#tab-active {
+    background-color: white;
+    color: grey;
+
+}
+
+.edit-profile-div {
+    width: 40%;
+    height: auto;
+    min-height: 400px;
+    margin: 30%;
+    margin-top: 5%;
+    border: 2px solid #333;
+    border-radius: 4px;
+}
