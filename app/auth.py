@@ -58,15 +58,17 @@ def update_email(user, request):
 def update_password(user, request):
     password = request.form['password']
     pwd = request.form['pwd']
-    if password == pwd:
-        if len(password) >= 3:
-            user.password = generate_password_hash(password)
-            db.session.commit()
-            return True
+    if password != '' and pwd != '':
+        if password == pwd:
+            if len(password) >= 3:
+                user.password = generate_password_hash(password)
+                db.session.commit()
+                return True
+            else:
+                return 'A Senha precisa ter no minimo 3 caracteres'
         else:
-            return 'A Senha precisa ter no minimo 3 caracteres'
-    else:
-        return 'As senhas precisam ser iguais'
+            return 'As senhas precisam ser iguais'
+    return True
 
 
 def update_user(request, current_user):
