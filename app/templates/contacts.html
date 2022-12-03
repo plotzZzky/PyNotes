@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+    {% block content %}
+        {% block head %}
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='contacts.css')}}">
+        {% endblock %}
+
+
+        <div class="content">
+            <h2 class="title"> Seus contatos </h2>
+            <ul class="list-contacts">
+                {% block table %}
+                {% for contact in contacts %}
+                    <a style="text-decoration: none;color: inherit;" href="/contacts/view">
+                        <li class="contact">
+                            <div>
+                                <i class="fa-solid fa-user"></i>
+                                <span> {{ contact.name }} {{ contact.lastname }}  </span>
+                                <a style="float: right;">{{ contact.telephone}} </a>
+                                <dl>
+                                    <a> {{ contact.email }} </a>
+                                    <a class="contact-social"> {{ contact.social }}</a>
+                                    <a style="float: right;" href="/contacts/del={{ contact.id }}">
+                                       <button class="btn-delete"><i class="fa-solid fa-trash fa-lg"></i></button>
+                                    </a>
+                                    <a style="float: right; padding-right: 16px;" href="/contacts/edit={{ contact.id }}">
+                                       <button class="btn-delete"><i class="fa-solid fa-pen fa-lg"></i></button>
+                                    </a>
+
+                                </dl>
+                            </div>
+                        </li>
+                    </a>
+                {% endfor %}
+                {% endblock %}
+            </ul>
+        </div>
+    {% endblock %}

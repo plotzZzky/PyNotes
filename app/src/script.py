@@ -1,4 +1,5 @@
-from app import db, Notes, Contact, Url
+from app.__init__ import db
+from app.models import Notes, Contact, Url
 from datetime import datetime
 
 

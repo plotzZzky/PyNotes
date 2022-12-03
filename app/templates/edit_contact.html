@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+    {% block content %}
+
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='contacts.css')}}">
+        {% endblock %}
+
+        <div class="content">
+
+            {% for message in get_flashed_messages() %}
+                <div class="alert-error">Error: {{ message }}</div>
+            {% endfor %}
+
+            <div class="contact-div">
+                <form action="/contacts/edit={{ contact.id }}" method="POST">
+                    <input class="text-input" name="name" value="{{ contact.name }}"><br>
+                    <input class="text-input" name="lastname" value="{{ contact.lastname }}"><br>
+                    <input class="text-input" name="telephone" value="{{ contact.telephone }}"><br>
+                    <input class="text-input" name="email" value="{{ contact.email }}"><br>
+                    <input class="text-input" name="social" value="{{ contact.social }}"><br>
+                    <input type="submit" class="submit-input" value="Salvar">
+                </form>
+            </div>
+        </div>
+    {% endblock %}

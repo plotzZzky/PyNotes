@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+    {% block content %}
+
+        {% block head %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='urls.css')}}">
+            <script type=text/javascript src="{{url_for('static', filename='js/urls.js')}}"></script>
+        {% endblock %}
+
+        <div class="content">
+            <div class="div-urls">
+                <h2 class="title"> Seus Favoritos </h2>
+                <ul class="list-urls">
+                    {% block urls %}
+                        {% for url in urls %}
+                            <li class="url" >
+                                <div >
+                                    <i class="fa-solid fa-earth-americas"></i>
+                                    <span onclick="openLink('{{ url.url }}')"> {{ url.site_name }}</span>
+                                    <dl>
+                                        <a > {{ url.url }} </a>
+                                        <a style="float: right;" href="/urls/del={{ url.id }}">
+                                           <button class="btn-delete"><i class="fa-solid fa-trash fa-lg"></i></button>
+                                        </a>
+                                    </dl>
+                                 </div>
+                            </li>
+                        {% endfor %}
+                    {% endblock %}
+                </ul>
+                    <div class="div-new-url">
+                        <form action="/urls/add" method="POST">
+                            <input type="text" class="text-input" name="title" placeholder="Nome do site">
+                            <input type="url"class="url-input" name="url" value="http://"><br>
+                            <input type="submit" class="submit-input" value="Adicionar">
+                        </form>
+                    </div>
+            </div>
+        </div>
+    {% endblock %}

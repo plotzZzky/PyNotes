@@ -1,9 +1,12 @@
-from app import app, db, User, Notes, Contact, Url
 from flask import request, render_template, flash, redirect
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.security import check_password_hash
-from auth import signup_user, update_user
-from src.script import create_note, delete_note, create_contact, edit_contact, delete_contact, create_url, delete_url
+
+from app.__init__ import app, db
+from app.models import User, Notes, Contact, Url
+from app.auth import signup_user, update_user
+from app.src.script import (create_note, delete_note, create_contact, edit_contact, delete_contact, create_url,
+                            delete_url)
 
 
 # # # # # # # # # # # # # # # # Login # # # # # # # # # # # # # # # #
@@ -19,7 +22,7 @@ def check_login():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('login.html')
+        return render_template('login.html', title='Entrar')
     else:
         username = request.form['username']
         password = request.form['password']
@@ -42,15 +45,17 @@ def signup():
     if query:
         return redirect('/notes')
     else:
-        flash('Error')
+        flash('Não foi possivel criar o usuario')
         return redirect('/login')
 
 
 @app.route('/logout', methods=['GET'])
-@login_required
 def logout():
-    logout_user()
-    return redirect('/')
+    if current_user.is_authenticated:
+        logout_user()
+        return redirect('/')
+    else:
+        return redirect('/login')
 
 
 # # # # # # # # # # # # # # # # Profile # # # # # # # # # # # # # # # #
@@ -59,10 +64,16 @@ def logout():
 @login_required
 def edit_profile():
     if request.method == 'GET':
-        return render_template('edit_user.html', user=current_user)
+        return render_template('edit_user.html', user=current_user, title='Ajustes')
     else:
-        update_user(request, current_user)
-        return redirect('/notes')
+        query = update_user(request, current_user)
+        print(query)
+        if query is True:
+            flash('Perfil atualizado')
+            return redirect('/notes')
+        else:
+            flash(query)
+            return redirect('/settings')
 
 
 # # # # # # # # # # # # # # # # Notas # # # # # # # # # # # # # # # #
@@ -71,14 +82,14 @@ def edit_profile():
 @login_required
 def show_notes():
     notes = db.session.query(Notes).filter_by(user_id=current_user.id).all()
-    return render_template('notes.html', user=current_user, notes=notes)
+    return render_template('notes.html', user=current_user, notes=notes, title='Notas')
 
 
 @app.route('/notes/add', methods=['GET', 'POST'])
 @login_required
 def add_new_note():
     if request.method == 'GET':
-        return render_template('add_note.html', user=current_user)
+        return render_template('add_note.html', user=current_user, title='Notas')
     else:
         create_note(request, current_user)
         return redirect('/notes')
@@ -97,14 +108,14 @@ def delete_note_by(note_id):
 @login_required
 def show_contacts():
     contacts = db.session.query(Contact).filter_by(user_id=current_user.id).all()
-    return render_template('contacts.html', user=current_user, contacts=contacts)
+    return render_template('contacts.html', user=current_user, contacts=contacts, title='Contatos')
 
 
 @app.route('/contacts/add', methods=['GET', 'POST'])
 @login_required
 def add_new_contact():
     if request.method == 'GET':
-        return render_template('add_contact.html', user=current_user)
+        return render_template('add_contact.html', user=current_user, title='Contatos')
     else:
         create_contact(request, current_user)
         return redirect('/contacts')
@@ -115,7 +126,7 @@ def add_new_contact():
 def contact_edit(contact_id):
     contact = db.session.query(Contact).filter_by(id=contact_id, user_id=current_user.id).one()
     if request.method == 'GET':
-        return render_template('edit_contact.html', user=current_user, contact=contact)
+        return render_template('edit_contact.html', user=current_user, contact=contact, title='Contatos')
     else:
         query = edit_contact(request, contact)
         if query:
@@ -138,14 +149,14 @@ def delete_contact_by(contact_id):
 @login_required
 def show_urls():
     urls = db.session.query(Url).filter_by(user_id=current_user.id).all()
-    return render_template('urls.html', user=current_user, urls=urls)
+    return render_template('urls.html', user=current_user, urls=urls, title='Contatos')
 
 
 @app.route('/urls/add', methods=['GET', 'POST'])
 @login_required
 def add_new_url():
     if request.method == 'GET':
-        return render_template('add_url.html', user=current_user)
+        return render_template('add_url.html', user=current_user, title='Contatos')
     else:
         create_url(request, current_user)
         return redirect('/urls')
@@ -160,20 +171,20 @@ def delete_url_by(url_id):
 
 # # # # # # # # # # # # # # # # Gerais # # # # # # # # # # # # # # # #
 
-@app.errorhandler(404)
-@app.errorhandler(405)
-def not_found(e):
-    if request.referrer:
-        return redirect(request.referrer)
-    else:
-        return redirect('/')
-
-
-@app.route('/', methods=['GET'])
+@app.route('/home', methods=['GET'])
 def home():
-    return render_template('home.html')
+    return render_template('home.html', title='Inicio')
 
 
 @app.route('/about', methods=['GET'])
 def about():
-    return render_template('about.html')
+    return render_template('about.html', title='Sobre')
+
+
+@app.errorhandler(405)
+@app.errorhandler(404)
+def not_found(e):
+    if request.referrer:
+        return redirect(request.referrer)
+    else:
+        return redirect('/home')

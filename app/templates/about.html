@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+    {% extends "base.html" %}
+
+    {% block content %}
+        <div class="content">
+            <div class="div-brand">
+                <a class="brand-name"> PyNotes</a>
+                <i class="fa-brands fa-python fa-2xl"></i>
+            </div>
+
+            <h1 class="title"> Sobre:</h1>
+            <h3> Projeto de api criado por um estudante python para demonstrar o uso do Flask e PostgreSql</h3>
+            <h3> Estrutura da api:</h3>
+            <p style="text-align: center;"><a href="/">/</a> Pagina inicial ['GET']</p>
+            <p style="text-align: center;"><a href="/about">/about</a> Pagina sobre o projeto ['GET']</p>
+            <p style="text-align: center;"><a href="/login">/login</a> Pagina de login e cadastro ['GET', 'POST']</p>
+            <p style="text-align: center;"><a href="/settings">/settings</a> Pagina para configurar a conta do usuario ['GET', 'POST']</p>
+            <p style="text-align: center;"><a href="/notes">/notes</a> Pagina com as notas do usuario ['GET']</p>
+            <p style="text-align: center;"><a href="/notes/add">/notes/add</a> Pagina para adicionar as notas ['GET', 'POST']</p>
+            <p style="text-align: center;"><a href="/contacts">/contacts</a> Pagina com os contatos do usuario ['GET']</p>
+            <p style="text-align: center;"><a href="/contacts/add">/contacts/add</a> Pagina para adicionar novos contatos ['GET', 'POST']</p>
+            <p style="text-align: center;"><a href="/urls">/urls</a> Pagina com os sites favoritos do usuario ['GET', 'POST']</p>
+        </div>
+    {% endblock %}
+
+</body>
+</html>
